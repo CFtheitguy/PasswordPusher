@@ -1,7 +1,7 @@
 /*
  * This file is intentionally left blank.
  *
- * Use file file to place CSS overrides in.  It is loaded last and will take precedence.
+ * Use this file to place CSS overrides in. It is loaded last and will take precedence.
  */
 
 /*
@@ -12,3 +12,16 @@
     background-color: #1acaca;
 }
 */
+
+/* Force revealed secret text to be visible */
+.secret pre,
+.secret code {
+    color: #000 !important; /* black text */
+    background-color: #fff !important; /* white background */
+}
+
+/* Optional: make blurred text easier to read when revealed */
+.blurred {
+    color: #000 !important;
+}
+
