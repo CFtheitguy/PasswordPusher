@@ -1,3 +1,46 @@
+/* === Linear Tech Custom Theme === */
+
+body {
+  background-color: #f5faff;
+  font-family: "Inter", sans-serif;
+  color: #333;
+}
+
+.navbar, header {
+  background-color: #1f6feb !important;
+  color: white !important;
+}
+
+a, a:hover {
+  color: #1f6feb;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: #1f6feb !important;
+  border-color: #1f6feb !important;
+}
+
+.btn-primary:hover {
+  background-color: #155dc1 !important;
+}
+
+.footer, footer {
+  background-color: #1f6feb;
+  color: white;
+  padding: 15px 0;
+  text-align: center;
+}
+
+/* Container and card styling for smoother visuals */
+.container {
+  max-width: 900px;
+}
+
+.card {
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+}
 /*
  * This file is intentionally left blank.
  *
