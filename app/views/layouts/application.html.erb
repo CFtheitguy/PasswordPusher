@@ -3,35 +3,53 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-  <title><%= content_for?(:html_title) ? yield(:html_title) : Settings.brand.title %></title>
+  <!-- Page Title -->
+  <title><%= content_for?(:html_title) ? yield(:html_title) : "Linear Tech Password Portal" %></title>
 
-  <meta content="<%= _('Password Pusher is an application to securely send passwords over the web. Links to passwords expire after a certain number of views and/or time has passed.') %>" name='description'>
-  <meta content='width=device-width, initial-scale=1' name='viewport'>
+  <!-- Meta Info -->
+  <meta content="Linear Tech Secure Password Portal — safely share passwords that auto-expire after viewing." name="description">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
 
+  <!-- Icons & Analytics -->
   <%= render partial: "shared/layout_icons", cached: true %>
-
   <%= render partial: "application/ga", cached: true %>
   <%= render partial: "application/plausible", cached: true %>
 
+  <!-- Security -->
   <%= csrf_meta_tags %>
   <%= csp_meta_tag if defined?(csp_meta_tag) %>
 
+  <!-- Styles & Scripts -->
   <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "custom", "data-turbo-track": "reload" %> <!-- Linear Tech custom theme -->
   <%= tag.meta name: 'turbo-drive-enabled', content: ENV.key?('TURBO_DRIVE_ENABLED') ? ENV['TURBO_DRIVE_ENABLED'].to_s.downcase : true %>
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100" style="background-color:#f5faff; font-family:'Inter',sans-serif;">
 
-<%= render partial: 'shared/header' %>
+  <!-- Header -->
+  <%= render partial: 'shared/header' %>
 
-<div class="container">
-  <%= render partial: 'shared/alerts' %>
-  <%= yield %>
-</div>
+  <!-- Linear Tech Banner -->
+  <div class="text-center py-4 shadow-sm" style="background-color:#f5faff;">
+    <img src="/assets/images/lineartech-logo.png" alt="Linear Tech" style="height:60px;">
+    <h3 style="color:#1f6feb; margin-top:10px;">Secure Password Portal</h3>
+    <p class="text-muted mb-0" style="font-size:0.95rem;">Powered by Linear Tech — your trusted IT partner</p>
+  </div>
 
-<%= render partial: 'shared/footer', cached: true %>
-<%= render partial: 'shared/cookie_consent', cached: true %>
+  <!-- Main Content -->
+  <main class="container my-4 flex-grow-1">
+    <%= render partial: 'shared/alerts' %>
+    <%= yield %>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center mt-auto py-3" style="background-color:#1f6feb; color:white;">
+    <p class="mb-0">© 2025 Linear Tech — Secure Password Delivery</p>
+  </footer>
+
+  <%= render partial: 'shared/cookie_consent', cached: true %>
 
 </body>
 </html>
