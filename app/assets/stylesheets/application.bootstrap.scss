@@ -1,66 +1,89 @@
 // ===============================================================
-// Linear Tech – Custom Bootstrap Theme (Render-friendly)
+// Linear Tech – Custom Bootstrap Theme (Render-friendly, Dart Sass)
 // ===============================================================
 
-// 1) Brand variables (must be BEFORE Bootstrap)
-$primary: #1f6feb;
-$secondary: #6c757d;
-$success: #198754;
-$info: #0dcaf0;
-$warning: #ffc107;
-$danger: #dc3545;
-$light: #f5faff;
-$dark: #212529;
+// 0) Import Sass modules FIRST (so their funcs are available)
+@use "sass:color";
 
-$body-bg: $light;
-$body-color: #333;
-$font-family-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+// 1) Define your brand tokens
+$lt-primary: #1f6feb;
+$lt-secondary: #6c757d;
+$lt-success: #198754;
+$lt-info: #0dcaf0;
+$lt-warning: #ffc107;
+$lt-danger: #dc3545;
+$lt-light: #f5faff;
+$lt-dark: #212529;
 
-$link-color: $primary;
-/* use modern color helper */
-$link-hover-color: color.adjust($primary, $lightness: -10%);
+$lt-body-bg: $lt-light;
+$lt-body-color: #333;
+$lt-font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+  "Liberation Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
-$btn-primary-bg: $primary;
-$btn-primary-border-color: $primary;
-$input-focus-border-color: $primary;
-$form-select-focus-border-color: $primary;
+$lt-link-color: $lt-primary;
+$lt-link-hover: color.adjust($lt-primary, $lightness: -10%);
 
-// 2) Import Bootstrap correctly for Dart Sass
-@use "bootstrap/scss/bootstrap" as *;
+// 2) Import Bootstrap via @use and pass overrides with `with`
+@use "bootstrap/scss/bootstrap" with (
+  $primary: $lt-primary,
+  $secondary: $lt-secondary,
+  $success: $lt-success,
+  $info: $lt-info,
+  $warning: $lt-warning,
+  $danger: $lt-danger,
+  $light: $lt-light,
+  $dark: $lt-dark,
 
-// 3) Post-Bootstrap overrides
+  $body-bg: $lt-body-bg,
+  $body-color: $lt-body-color,
+  $font-family-sans-serif: $lt-font-sans,
+
+  $link-color: $lt-link-color
+);
+
+// 3) Post-Bootstrap overrides (your custom styles)
 body {
-  background-color: $light;
-  font-family: $font-family-sans-serif;
+  background-color: $lt-light;
+  font-family: $lt-font-sans;
 }
 
-.navbar, header.navbar {
-  background-color: $primary !important;
+.navbar,
+header.navbar {
+  background-color: $lt-primary !important;
   color: #fff !important;
 }
 
-.nav-link, .navbar-brand { color: #fff !important; }
+.nav-link,
+.navbar-brand {
+  color: #fff !important;
+}
+
+a:hover {
+  color: $lt-link-hover;
+}
 
 .btn-primary:hover {
-  background-color: color.adjust($primary, $lightness: -10%) !important;
-  border-color: color.adjust($primary, $lightness: -10%) !important;
+  background-color: color.adjust($lt-primary, $lightness: -10%) !important;
+  border-color: color.adjust($lt-primary, $lightness: -10%) !important;
 }
 
 .card {
   border-radius: 12px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
   background-color: #fff;
 }
 
-footer, .footer {
-  background-color: $primary;
+footer,
+.footer {
+  background-color: $lt-primary;
   color: #fff;
   padding: 15px 0;
   text-align: center;
 }
 
+/* Alert styling to match brand */
 .alert-info {
-  background-color: color.scale($primary, $lightness: 40%);
+  background-color: color.scale($lt-primary, $lightness: 40%);
   color: #003366;
-  border-color: color.scale($primary, $lightness: 35%);
+  border-color: color.scale($lt-primary, $lightness: 35%);
 }
