@@ -25,3 +25,17 @@ $fi-path: "/flags" !default;
 
 @use "standard";
 @use "custom";
+/* Post-bootstrap tweaks */
+.navbar,
+header.navbar {
+  background-color: $primary !important;
+  color: #fff !important;
+}
+
+footer.footer,
+footer {
+  background-color: $primary;
+  color: #fff;
+  padding: 15px 0;
+  text-align: center;
+}
