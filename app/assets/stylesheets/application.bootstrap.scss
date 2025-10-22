@@ -1,41 +1,76 @@
-/* === Linear Tech theme overrides (must be before bootstrap import) === */
+// ===============================================================
+// Linear Tech – Custom Bootstrap Theme
+// ===============================================================
+
+// ---- 1. Brand color variables (must come BEFORE Bootstrap import)
 $primary: #1f6feb;
-$body-bg: #f5faff;
+$secondary: #6c757d;
+$success: #198754;
+$info: #0dcaf0;
+$warning: #ffc107;
+$danger: #dc3545;
+$light: #f5faff;
+$dark: #212529;
+
+// ---- 2. Typography and body
+$body-bg: $light;
+$body-color: #333;
 $font-family-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
-/* Optional: tweak buttons/links */
+// ---- 3. Links
 $link-color: $primary;
+$link-hover-color: darken($primary, 10%);
+
+// ---- 4. Buttons and forms
 $btn-primary-bg: $primary;
 $btn-primary-border-color: $primary;
-$accordion-color: #fff;
-$color-mode-type: media-query;
+$input-focus-border-color: $primary;
+$form-select-focus-border-color: $primary;
 
-@use "@fontsource/roboto";
-@use "@fontsource/roboto-slab";
-@use "@fontsource/roboto-mono";
+// ===============================================================
+// Import Bootstrap
+// ===============================================================
+@import "bootstrap";
 
-@use 'bootstrap/scss/bootstrap';
-@use 'bootstrap-icons/font/bootstrap-icons';
+// ===============================================================
+// Post-Bootstrap overrides and custom styles
+// ===============================================================
 
-$fi-path: "/flags" !default;
-@use "flag-icons/sass/flag-icons";
-
-/* Import the selected theme - to be setup before build */
-@use "themes/selected";
-
-@use "standard";
-@use "custom";
-/* Post-bootstrap tweaks */
-.navbar,
-header.navbar {
-  background-color: $primary !important;
-  color: #fff !important;
+body {
+  background-color: $light;
+  font-family: $font-family-sans-serif;
 }
 
-footer.footer,
-footer {
+.navbar, header.navbar {
+  background-color: $primary !important;
+  color: white !important;
+}
+
+.nav-link, .navbar-brand {
+  color: white !important;
+}
+
+.btn-primary:hover {
+  background-color: darken($primary, 10%) !important;
+  border-color: darken($primary, 10%) !important;
+}
+
+.card {
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+  background-color: white;
+}
+
+footer, .footer {
   background-color: $primary;
-  color: #fff;
+  color: white;
   padding: 15px 0;
   text-align: center;
+}
+
+// Alert styling (matches Linear Tech blue)
+.alert-info {
+  background-color: lighten($primary, 40%);
+  color: #003366;
+  border-color: lighten($primary, 35%);
 }
